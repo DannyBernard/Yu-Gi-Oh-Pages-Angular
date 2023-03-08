@@ -21,5 +21,13 @@ Api_Url = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
     map((res:any )=> res.data)
   );
   }
+
+  getCard(id : string){
+    const params = {id};
+
+    return this.Http.get(this.Api_Url,{params}).pipe(
+      map((res:any )=> res.data[0])
+    );
+  }
 }
 

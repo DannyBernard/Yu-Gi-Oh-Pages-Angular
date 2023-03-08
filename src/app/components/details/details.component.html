@@ -1,26 +1,36 @@
-<div class="detail-card">
+<div class="detail-card" *ngIf="card$ | async as card">
     <div class="top">
-  <img src="" alt="">
+  <img [src]="card.card_images[0].image_url" alt="">
     </div>
     <div class="botton">
-     <h2>Nombre de la carta</h2>
-
+     <h2 class="text-center">{{ card.name }}</h2>
      <div class="item">
-        <h3 class="title">titulo</h3>
-        <p class="descripsion">descripsion</p>
-
+        <p class="descripsion">{{card.desc}}</p>
+     </div>
+     <div class="item">
+        <h3 class="title">Arquetipo</h3>
+        <p class="descripsion">{{card.frameType}}</p>
+      </div>
+      <div class="item">
+        <h3 class="title">Tipo</h3>
+        <p class="descripsion">{{card.type}}</p>
+      </div>
+      <div class="item">
+        <h3 class="title">Sub Tipo</h3>
+        <p class="descripsion">{{card.race}}</p>
+      </div>
         <table class="table">
             <thead>
                 <th class="col">Makert</th>
                 <th class="col">Price</th>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Makert</th>
-                    <th>Price</th>
+                <tr *ngFor="let makert of card.card_prices[0] | keyvalue">
+                    <th scope="row">{{makert.key | marketName}}</th>
+                    <th>{{makert.value}}</th>
                 </tr>
             </tbody>
         </table>
      </div>
     </div>
-</div>
+
